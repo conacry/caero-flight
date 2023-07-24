@@ -12,7 +12,7 @@ public class Flight {
     //private Instant scheduledArrival;
     //private Instant actualDeparture;
     //private Instant arrivalArrival;
-    //private FlightStatus status;
+    // private FlightStatus status;
     //private Instant createdAt;
     //private Instant updatedAt;
 }
