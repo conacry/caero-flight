@@ -56,12 +56,36 @@ public class FlightBuilder {
             throw FlightError.errFlightNumberIsRequired();
         }
         if (this.aircraft == null) {
-            throw FlightError.();
-            // сделал по примеру из AircraftBuilder
-            // не хватает ошибок в FlightError для проверки всех полей класса Flight
-            // не могу сам написать эти ошибки для этих полей в FlightError
-
+            throw FlightError.errAircraftIsRequired();
         }
+        if (this.scheduledDeparture == null) {
+            throw FlightError.errScheduledDepartureIsRequired();
+        }
+        if (this.scheduledArrival == null) {
+            throw FlightError.errScheduledArrivalIsRequired();
+        }
+        if (this.status == null) {
+            throw FlightError.errStatusIsRequired();
+        }
+        if (this.createdAt == null) {
+            throw FlightError.errCreatedAtIsRequired();
+        }
+        if (this.updatedAt == null) {
+            throw FlightError.errUpdatedAtIsRequired();
+        }
+    }
+    public Flight build() {
+        this.checkRequiredFields();
+
+        return new Flight(
+                this.id,
+                this.number,
+                this.aircraft,
+                this.scheduledDeparture,
+                this.scheduledArrival,
+                this.status,
+                this.createdAt,
+                this.updatedAt);
     }
 
 }
