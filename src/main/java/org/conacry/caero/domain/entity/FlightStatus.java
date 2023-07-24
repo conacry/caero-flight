@@ -5,5 +5,6 @@ public enum FlightStatus {
     ON_TIME,
     DELAYED,
     ARRIVED,
-    CANCELLED
+    CANCELLED,
+    DEPARTED
 }
