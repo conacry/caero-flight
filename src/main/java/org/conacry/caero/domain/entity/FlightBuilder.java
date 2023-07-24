@@ -50,13 +50,17 @@ public class FlightBuilder {
     }
     private void checkRequiredFields() {
         if(this.id == null){
-            throw AircraftError.errAircraftIDIsRequired();
+            throw FlightError.errFlightIDValueIsRequired();
         }
-        if(this.model == null){
-            throw AircraftError.errModelIsRequired();
+        if(this.number == null){
+            throw FlightError.errFlightNumberIsRequired();
         }
-        if (this.status == null) {
-            throw AircraftError.errStatusIsRequired();
+        if (this.aircraft == null) {
+            throw FlightError.();
+            // сделал по примеру из AircraftBuilder
+            // не хватает ошибок в FlightError для проверки всех полей класса Flight
+            // не могу сам написать эти ошибки для этих полей в FlightError
+
         }
     }
 
