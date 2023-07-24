@@ -3,29 +3,29 @@ package org.conacry.caero.domain.entity;
 import java.util.Objects;
 import java.util.UUID;
 
-public final class FlightID {
+public class AirportID {
 
     private final UUID value;
 
-    public static FlightID newID() {
+    public static AirportID newID() {
         var value = UUID.randomUUID();
-        return new FlightID(value);
+        return new AirportID(value);
     }
 
-    public static FlightID from(String valueStr) {
+    public static AirportID from(String valueStr) {
         if (valueStr == null || valueStr.isBlank()) {
-            throw FlightError.errFlightIDValueIsRequired();
+            throw AirportError.errAirportIDValueIsRequired();
         }
 
         try {
             var value = UUID.fromString(valueStr);
-            return new FlightID(value);
+            return new AirportID(value);
         } catch (IllegalArgumentException e) {
-            throw FlightError.errIllegalFlightIDValue(valueStr, e);
+            throw AirportError.errIllegalAirportIDValue(valueStr, e);
         }
     }
 
-    private FlightID(UUID value) {
+    private AirportID(UUID value) {
         this.value = value;
     }
 
@@ -41,8 +41,8 @@ public final class FlightID {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        var flightID = (FlightID) o;
-        return Objects.equals(value, flightID.value);
+        var airportID = (AirportID) o;
+        return Objects.equals(value, airportID.value);
     }
     @Override
     public int hashCode() {
@@ -51,8 +51,9 @@ public final class FlightID {
 
     @Override
     public String toString() {
-        return "FlightID{" +
+        return "AirportID{" +
                 "value=" + value +
                 '}';
     }
+
 }
