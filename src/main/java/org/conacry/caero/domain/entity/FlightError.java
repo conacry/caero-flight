@@ -8,6 +8,8 @@ public final class FlightError {
     public static final String ILLEGAL_FLIGHT_NUMBER = "3d1f50e6-002";
     public static final String FLIGHT_ID_VALUE_IS_REQUIRED = "3d1f50e6-003";
     public static final String ILLEGAL_FLIGHT_ID_VALUE = "3d1f50e6-004";
+    private static final String FLIGHT_ACTUAL_ARRIVAL_IS_REQUIRED = "3d1f50e6-005";
+    public static final String FLIGHT_ACTUAL_DEPATURE_IS_REQUIRED = "3d1f50e6-006";
 
 
     public static CodedException errFlightNumberIsRequired() {
@@ -28,5 +30,15 @@ public final class FlightError {
     public static CodedException errIllegalFlightIDValue(String valueStr, Throwable cause) {
         var errMsg = String.format("Illegal value = '%s' format to create FlightID", valueStr);
         return new CodedException(ILLEGAL_FLIGHT_ID_VALUE, errMsg, cause);
+    }
+
+    public static CodedException errActualDepartureIsRequired() {
+        var errMsg = "errActualDepartureIsRequired";
+        return new CodedException(FLIGHT_ACTUAL_DEPATURE_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errAclualArrivalIsRequired() {
+        var errMsg = "errAclualArrivalIsRequired";
+        return new CodedException(FLIGHT_ACTUAL_ARRIVAL_IS_REQUIRED, errMsg);
     }
 }
