@@ -38,6 +38,14 @@ public class Flight {
         this.updatedAt = updatedAt;
     }
 
+    public void setActualArrival(Instant time) {
+        if (time == null) {
+            throw FlightError.errActualArrivalIsRequired();
+        }
+
+        this.actualArrival = time;
+    }
+
     public FlightID getId() {
         return id;
     }
