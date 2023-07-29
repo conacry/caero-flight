@@ -37,4 +37,44 @@ public class Flight {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
+    public FlightID getId() {
+        return id;
+    }
+
+    public FlightNumber getNumber() {
+        return number;
+    }
+
+    public Aircraft getAircraft() {
+        return aircraft;
+    }
+
+    public Instant getScheduledDeparture() {
+        return scheduledDeparture;
+    }
+
+    public Instant getScheduledArrival() {
+        return scheduledArrival;
+    }
+
+    public Instant getActualDeparture() {
+        return actualDeparture;
+    }
+
+    public Instant getActualArrival() {
+        return actualArrival;
+    }
+
+    public FlightStatus getStatus() {
+        return status;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
 }
