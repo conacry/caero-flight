@@ -3,6 +3,7 @@ package org.conacry.caero.domain.entity;
 import org.conacry.caero.shared.exception.CodedException;
 import org.junit.jupiter.api.Test;
 import testdouble.entity.AircraftStub;
+import testdouble.entity.AirportStub;
 import testdouble.entity.FlightNumberStub;
 
 import java.time.Instant;
@@ -233,6 +234,70 @@ public class FlightBuilderTest {
 
         var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(FlightError.UPDATED_AT_IS_REQUIRED, ex.getCode());
+    }
+
+    @Test
+    void build_DepartureAirportIsNull_ThrowEx() {//////////////////////////
+        var flightID = FlightID.newID();
+        var flightNumber = FlightNumberStub.getFlightNumber();
+        var arrivalAirport = AirportStub.getAirport();
+        var aircraft = AircraftStub.getAircraft();
+        var scheduledDeparture = Instant.now();
+        var scheduledArrival = Instant.now();
+        var actualDeparture = Instant.now();
+        var actualArrival = Instant.now();
+        var flightStatus = FlightStatus.ARRIVED;
+        var createdAt = Instant.now();
+        var updatedAt = Instant.now();
+
+        var builder = new FlightBuilder().
+                id(flightID).
+                number(flightNumber).
+                departureAirport(null).
+                arrivalAirport(arrivalAirport).
+                aircraft(aircraft).
+                scheduledDeparture(scheduledDeparture).
+                scheduledArrival(scheduledArrival).
+                actualDeparture(actualDeparture).
+                actualArrival(actualArrival).
+                status(flightStatus).
+                createdAt(createdAt).
+                updatedAt(updatedAt);
+
+        var ex = assertThrows(CodedException.class, builder::build);
+        assertEquals(FlightError.DEPARTURE_AIRPORT_IS_REQUIRED, ex.getCode());
+    }
+
+    @Test
+    void build_ArrivalAirportIsNull_ThrowEx() {//////////////////////////
+        var flightID = FlightID.newID();
+        var flightNumber = FlightNumberStub.getFlightNumber();
+        var departureAirport = AirportStub.getAirport();
+        var aircraft = AircraftStub.getAircraft();
+        var scheduledDeparture = Instant.now();
+        var scheduledArrival = Instant.now();
+        var actualDeparture = Instant.now();
+        var actualArrival = Instant.now();
+        var flightStatus = FlightStatus.ARRIVED;
+        var createdAt = Instant.now();
+        var updatedAt = Instant.now();
+
+        var builder = new FlightBuilder().
+                id(flightID).
+                number(flightNumber).
+                departureAirport(departureAirport).
+                arrivalAirport(null).
+                aircraft(aircraft).
+                scheduledDeparture(scheduledDeparture).
+                scheduledArrival(scheduledArrival).
+                actualDeparture(actualDeparture).
+                actualArrival(actualArrival).
+                status(flightStatus).
+                createdAt(createdAt).
+                updatedAt(updatedAt);
+
+        var ex = assertThrows(CodedException.class, builder::build);
+        assertEquals(FlightError.ARRIVAL_AIRPORT_IS_REQUIRED, ex.getCode());
     }
 
     @Test
