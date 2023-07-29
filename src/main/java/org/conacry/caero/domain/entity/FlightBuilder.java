@@ -16,43 +16,61 @@ public class FlightBuilder {
     private Instant createdAt;
     private Instant updatedAt;
 
-    public FlightBuilder id (FlightID id) {
+    public FlightBuilder id(FlightID id) {
         this.id = id;
         return this;
     }
-    public FlightBuilder number (FlightNumber number) {
+
+    public FlightBuilder number(FlightNumber number) {
         this.number = number;
         return this;
     }
-    public FlightBuilder aircraft (Aircraft aircraft) {
+
+    public FlightBuilder aircraft(Aircraft aircraft) {
         this.aircraft = aircraft;
         return this;
     }
-    public FlightBuilder scheduledDeparture (Instant scheduledDeparture) {
+
+    public FlightBuilder scheduledDeparture(Instant scheduledDeparture) {
         this.scheduledDeparture = scheduledDeparture;
         return this;
     }
-    public FlightBuilder scheduledArrival (Instant scheduledArrival) {
+
+    public FlightBuilder scheduledArrival(Instant scheduledArrival) {
         this.scheduledArrival = scheduledArrival;
         return this;
     }
-    public FlightBuilder status (FlightStatus status) {
+
+    public FlightBuilder actualDeparture(Instant actualDeparture) {
+        this.actualDeparture = actualDeparture;
+        return this;
+    }
+
+    public FlightBuilder actualArrival(Instant actualArrival) {
+        this.actualArrival = actualArrival;
+        return this;
+    }
+
+    public FlightBuilder status(FlightStatus status) {
         this.status = status;
         return this;
     }
-    public FlightBuilder createdAt (Instant createdAt) {
+
+    public FlightBuilder createdAt(Instant createdAt) {
         this.createdAt = createdAt;
         return this;
     }
-    public FlightBuilder updatedAt (Instant updatedAt) {
+
+    public FlightBuilder updatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
         return this;
     }
+
     private void checkRequiredFields() {
-        if(this.id == null){
+        if (this.id == null) {
             throw FlightError.errFlightIDValueIsRequired();
         }
-        if(this.number == null){
+        if (this.number == null) {
             throw FlightError.errFlightNumberIsRequired();
         }
         if (this.aircraft == null) {
@@ -74,6 +92,7 @@ public class FlightBuilder {
             throw FlightError.errUpdatedAtIsRequired();
         }
     }
+
     public Flight build() {
         this.checkRequiredFields();
 
@@ -83,6 +102,8 @@ public class FlightBuilder {
                 this.aircraft,
                 this.scheduledDeparture,
                 this.scheduledArrival,
+                this.actualDeparture,
+                this.actualArrival,
                 this.status,
                 this.createdAt,
                 this.updatedAt);
