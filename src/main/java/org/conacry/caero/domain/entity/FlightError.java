@@ -15,7 +15,6 @@ public final class FlightError {
     public static final String CREATED_AT_IS_REQUIRED = "3d1f50e6-009";
     public static final String UPDATED_AT_IS_REQUIRED = "3d1f50e6-010";
 
-
     public static CodedException errFlightNumberIsRequired() {
         var errMsg = "Value to create FlightNumber is required";
         return new CodedException(FLIGHT_NUMBER_REQUIRED, errMsg);
@@ -40,22 +39,27 @@ public final class FlightError {
         var errMsg = "Value to create Aircraft is required";
         return new CodedException(AIRCRAFT_IS_REQUIRED, errMsg);
     }
+
     public static CodedException errScheduledDepartureIsRequired() {
         var errMsg = "Value to create scheduledDeparture is required";
         return new CodedException(SCHEDULED_DEPARTURE_IS_REQUIRED, errMsg);
     }
+
     public static CodedException errScheduledArrivalIsRequired() {
         var errMsg = "Value to create scheduledArrival is required";
         return new CodedException(SCHEDULED_ARRIVAL_IS_REQUIRED, errMsg);
     }
+
     public static CodedException errStatusIsRequired() {
         var errMsg = "Value to create status is required";
         return new CodedException(STATUS_IS_REQUIRED, errMsg);
     }
+
     public static CodedException errCreatedAtIsRequired() {
         var errMsg = "Value to create createdAt is required";
         return new CodedException(CREATED_AT_IS_REQUIRED, errMsg);
     }
+
     public static CodedException errUpdatedAtIsRequired() {
         var errMsg = "Value to create updatedAt is required";
         return new CodedException(UPDATED_AT_IS_REQUIRED, errMsg);

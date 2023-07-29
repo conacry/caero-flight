@@ -43,7 +43,7 @@ public class FlightIDTest {
     }
 
     @Test
-    void from_ValidValueStr_ReturnSeatID() {
+    void from_ValidValueStr_ReturnFlightID() {
         var validValueStr = UUID.randomUUID().toString();
         var flightID = FlightID.from(validValueStr);
         assertNotNull(flightID);
