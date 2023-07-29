@@ -10,6 +10,7 @@ public final class FlightError {
     public static final String ILLEGAL_FLIGHT_ID_VALUE = "3d1f50e6-004";
 
 
+
     public static CodedException errFlightNumberIsRequired() {
         var errMsg = "Value to create FlightNumber is required";
         return new CodedException(FLIGHT_NUMBER_REQUIRED, errMsg);
@@ -29,4 +30,6 @@ public final class FlightError {
         var errMsg = String.format("Illegal value = '%s' format to create FlightID", valueStr);
         return new CodedException(ILLEGAL_FLIGHT_ID_VALUE, errMsg, cause);
     }
+
+
 }
