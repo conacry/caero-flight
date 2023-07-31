@@ -51,6 +51,14 @@ public class Flight {
         return number;
     }
 
+    public Airport getArrivalAirport() {
+        return arrivalAirport;
+    }
+
+    public Airport getDepartureAirport() {
+        return departureAirport;
+    }
+
     public Aircraft getAircraft() {
         return aircraft;
     }
@@ -81,13 +89,5 @@ public class Flight {
 
     public Instant getUpdatedAt() {
         return updatedAt;
-    }
-
-    public Airport getArrivalAirport() {
-        return arrivalAirport;
-    }
-
-    public Airport getDepartureAirport() {
-        return departureAirport;
     }
 }
