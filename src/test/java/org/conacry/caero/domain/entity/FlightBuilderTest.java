@@ -3,6 +3,7 @@ package org.conacry.caero.domain.entity;
 import org.conacry.caero.shared.exception.CodedException;
 import org.junit.jupiter.api.Test;
 import testdouble.entity.AircraftStub;
+import testdouble.entity.AirportStub;
 import testdouble.entity.FlightNumberStub;
 
 import java.time.Instant;
@@ -42,6 +43,7 @@ public class FlightBuilderTest {
     @Test
     void build_FlightNumberIsNull_ThrowEx() {
         var flightID = FlightID.newID();
+        //var arrivalAirport = AirportStub.getAirport();
         var aircraft = AircraftStub.getAircraft();
         var scheduledDeparture = Instant.now();
         var scheduledArrival = Instant.now();
@@ -68,9 +70,11 @@ public class FlightBuilderTest {
     }
 
     @Test
-    void build_AircraftIsNull_ThrowEx() {
+    void build_AircraftIsNull_ThrowEx() {///***
         var flightID = FlightID.newID();
         var flightNumber = FlightNumberStub.getFlightNumber();
+        var arrivalAirport = AirportStub.getAirport();
+        var departureAirport = AirportStub.getAirport();
         var scheduledDeparture = Instant.now();
         var scheduledArrival = Instant.now();
         var actualDeparture = Instant.now();
@@ -82,6 +86,8 @@ public class FlightBuilderTest {
         var builder = new FlightBuilder().
                 id(flightID).
                 number(flightNumber).
+                departureAirport(departureAirport).
+                arrivalAirport(arrivalAirport).
                 aircraft(null).
                 scheduledDeparture(scheduledDeparture).
                 scheduledArrival(scheduledArrival).
@@ -96,9 +102,11 @@ public class FlightBuilderTest {
     }
 
     @Test
-    void build_ScheduledDepartureIsNull_ThrowEx() {
+    void build_ScheduledDepartureIsNull_ThrowEx() {///***
         var flightID = FlightID.newID();
         var flightNumber = FlightNumberStub.getFlightNumber();
+        var arrivalAirport = AirportStub.getAirport();
+        var departureAirport = AirportStub.getAirport();
         var aircraft = AircraftStub.getAircraft();
         var scheduledArrival = Instant.now();
         var actualDeparture = Instant.now();
@@ -110,6 +118,8 @@ public class FlightBuilderTest {
         var builder = new FlightBuilder().
                 id(flightID).
                 number(flightNumber).
+                departureAirport(departureAirport).
+                arrivalAirport(arrivalAirport).
                 aircraft(aircraft).
                 scheduledDeparture(null).
                 scheduledArrival(scheduledArrival).
@@ -127,6 +137,8 @@ public class FlightBuilderTest {
     void build_ScheduledArrivalIsNull_ThrowEx() {
         var flightID = FlightID.newID();
         var flightNumber = FlightNumberStub.getFlightNumber();
+        var arrivalAirport = AirportStub.getAirport();
+        var departureAirport = AirportStub.getAirport();
         var aircraft = AircraftStub.getAircraft();
         var scheduledDeparture = Instant.now();
         var actualDeparture = Instant.now();
@@ -138,6 +150,8 @@ public class FlightBuilderTest {
         var builder = new FlightBuilder().
                 id(flightID).
                 number(flightNumber).
+                departureAirport(departureAirport).
+                arrivalAirport(arrivalAirport).
                 aircraft(aircraft).
                 scheduledDeparture(scheduledDeparture).
                 scheduledArrival(null).
@@ -155,6 +169,8 @@ public class FlightBuilderTest {
     void build_FlightStatusIsNull_ThrowEx() {
         var flightID = FlightID.newID();
         var flightNumber = FlightNumberStub.getFlightNumber();
+        var arrivalAirport = AirportStub.getAirport();
+        var departureAirport = AirportStub.getAirport();
         var aircraft = AircraftStub.getAircraft();
         var scheduledDeparture = Instant.now();
         var scheduledArrival = Instant.now();
@@ -166,6 +182,8 @@ public class FlightBuilderTest {
         var builder = new FlightBuilder().
                 id(flightID).
                 number(flightNumber).
+                departureAirport(departureAirport).
+                arrivalAirport(arrivalAirport).
                 aircraft(aircraft).
                 scheduledDeparture(scheduledDeparture).
                 scheduledArrival(scheduledArrival).
@@ -183,6 +201,8 @@ public class FlightBuilderTest {
     void build_CreatedAtIsNull_ThrowEx() {
         var flightID = FlightID.newID();
         var flightNumber = FlightNumberStub.getFlightNumber();
+        var arrivalAirport = AirportStub.getAirport();
+        var departureAirport = AirportStub.getAirport();
         var aircraft = AircraftStub.getAircraft();
         var scheduledDeparture = Instant.now();
         var scheduledArrival = Instant.now();
@@ -194,6 +214,8 @@ public class FlightBuilderTest {
         var builder = new FlightBuilder().
                 id(flightID).
                 number(flightNumber).
+                departureAirport(departureAirport).
+                arrivalAirport(arrivalAirport).
                 aircraft(aircraft).
                 scheduledDeparture(scheduledDeparture).
                 scheduledArrival(scheduledArrival).
@@ -211,6 +233,8 @@ public class FlightBuilderTest {
     void build_UpdatedAtIsNull_ThrowEx() {
         var flightID = FlightID.newID();
         var flightNumber = FlightNumberStub.getFlightNumber();
+        var arrivalAirport = AirportStub.getAirport();
+        var departureAirport = AirportStub.getAirport();
         var aircraft = AircraftStub.getAircraft();
         var scheduledDeparture = Instant.now();
         var scheduledArrival = Instant.now();
@@ -222,6 +246,8 @@ public class FlightBuilderTest {
         var builder = new FlightBuilder().
                 id(flightID).
                 number(flightNumber).
+                departureAirport(departureAirport).
+                arrivalAirport(arrivalAirport).
                 aircraft(aircraft).
                 scheduledDeparture(scheduledDeparture).
                 scheduledArrival(scheduledArrival).
@@ -236,9 +262,75 @@ public class FlightBuilderTest {
     }
 
     @Test
+    void build_DepartureAirportIsNull_ThrowEx() {//////////////////////////
+        var flightID = FlightID.newID();
+        var flightNumber = FlightNumberStub.getFlightNumber();
+        var arrivalAirport = AirportStub.getAirport();
+        var aircraft = AircraftStub.getAircraft();
+        var scheduledDeparture = Instant.now();
+        var scheduledArrival = Instant.now();
+        var actualDeparture = Instant.now();
+        var actualArrival = Instant.now();
+        var flightStatus = FlightStatus.ARRIVED;
+        var createdAt = Instant.now();
+        var updatedAt = Instant.now();
+
+        var builder = new FlightBuilder().
+                id(flightID).
+                number(flightNumber).
+                departureAirport(null).
+                arrivalAirport(arrivalAirport).
+                aircraft(aircraft).
+                scheduledDeparture(scheduledDeparture).
+                scheduledArrival(scheduledArrival).
+                actualDeparture(actualDeparture).
+                actualArrival(actualArrival).
+                status(flightStatus).
+                createdAt(createdAt).
+                updatedAt(updatedAt);
+
+        var ex = assertThrows(CodedException.class, builder::build);
+        assertEquals(FlightError.DEPARTURE_AIRPORT_IS_REQUIRED, ex.getCode());
+    }
+
+    @Test
+    void build_ArrivalAirportIsNull_ThrowEx() {//////////////////////////
+        var flightID = FlightID.newID();
+        var flightNumber = FlightNumberStub.getFlightNumber();
+        var departureAirport = AirportStub.getAirport();
+        var aircraft = AircraftStub.getAircraft();
+        var scheduledDeparture = Instant.now();
+        var scheduledArrival = Instant.now();
+        var actualDeparture = Instant.now();
+        var actualArrival = Instant.now();
+        var flightStatus = FlightStatus.ARRIVED;
+        var createdAt = Instant.now();
+        var updatedAt = Instant.now();
+
+        var builder = new FlightBuilder().
+                id(flightID).
+                number(flightNumber).
+                departureAirport(departureAirport).
+                arrivalAirport(null).
+                aircraft(aircraft).
+                scheduledDeparture(scheduledDeparture).
+                scheduledArrival(scheduledArrival).
+                actualDeparture(actualDeparture).
+                actualArrival(actualArrival).
+                status(flightStatus).
+                createdAt(createdAt).
+                updatedAt(updatedAt);
+
+        var ex = assertThrows(CodedException.class, builder::build);
+        assertEquals(FlightError.ARRIVAL_AIRPORT_IS_REQUIRED, ex.getCode());
+    }
+
+    @Test
     void build_ActualTimeIsEmpty_ReturnFlightWithoutActualTime() {
         var flightID = FlightID.newID();
         var flightNumber = FlightNumberStub.getFlightNumber();
+        var arrivalAirport = AirportStub.getAirport();
+        var departureAirport = AirportStub.getAirport();
         var aircraft = AircraftStub.getAircraft();
         var scheduledDeparture = Instant.now();
         var scheduledArrival = Instant.now();
@@ -249,6 +341,8 @@ public class FlightBuilderTest {
         var flight = new FlightBuilder().
                 id(flightID).
                 number(flightNumber).
+                departureAirport(departureAirport).
+                arrivalAirport(arrivalAirport).
                 aircraft(aircraft).
                 scheduledDeparture(scheduledDeparture).
                 scheduledArrival(scheduledArrival).
@@ -276,6 +370,8 @@ public class FlightBuilderTest {
     void build_AllParamsIsValid_ReturnFlightWithActualTime() {
         var flightID = FlightID.newID();
         var flightNumber = FlightNumberStub.getFlightNumber();
+        var arrivalAirport = AirportStub.getAirport();
+        var departureAirport = AirportStub.getAirport();
         var aircraft = AircraftStub.getAircraft();
         var scheduledDeparture = Instant.now();
         var scheduledArrival = Instant.now();
@@ -288,6 +384,8 @@ public class FlightBuilderTest {
         var flight = new FlightBuilder().
                 id(flightID).
                 number(flightNumber).
+                departureAirport(departureAirport).
+                arrivalAirport(arrivalAirport).
                 aircraft(aircraft).
                 scheduledDeparture(scheduledDeparture).
                 scheduledArrival(scheduledArrival).

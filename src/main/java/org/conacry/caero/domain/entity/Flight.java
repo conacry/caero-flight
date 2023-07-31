@@ -5,8 +5,8 @@ import java.time.Instant;
 public class Flight {
     private FlightID id;
     private FlightNumber number;
-    //private Airport departureAirport;
-    //private Airport arrivalAirport;
+    private Airport departureAirport;
+    private Airport arrivalAirport;
     private Aircraft aircraft;
     private Instant scheduledDeparture;
     private Instant scheduledArrival;
@@ -16,8 +16,11 @@ public class Flight {
     private Instant createdAt;
     private Instant updatedAt;
 
+
     Flight(FlightID id,
            FlightNumber number,
+           Airport departureAirport,
+           Airport arrivalAirport,
            Aircraft aircraft,
            Instant scheduledDeparture,
            Instant scheduledArrival,
@@ -28,6 +31,8 @@ public class Flight {
            Instant updatedAt) {
         this.id = id;
         this.number = number;
+        this.departureAirport = departureAirport;
+        this.arrivalAirport = arrivalAirport;
         this.aircraft = aircraft;
         this.scheduledDeparture = scheduledDeparture;
         this.scheduledArrival = scheduledArrival;
@@ -44,6 +49,14 @@ public class Flight {
 
     public FlightNumber getNumber() {
         return number;
+    }
+
+    public Airport getArrivalAirport() {
+        return arrivalAirport;
+    }
+
+    public Airport getDepartureAirport() {
+        return departureAirport;
     }
 
     public Aircraft getAircraft() {
