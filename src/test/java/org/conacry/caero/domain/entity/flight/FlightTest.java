@@ -26,7 +26,7 @@ class FlightTest {
     }
 
     @Test
-    void set_ValidValue_setActualArrival() {
+    void setActualArrival_ValidValue_setActualArrival() {
         var flight = FlightStub.getBaseFlight();
         assertNull(flight.getActualArrival());
 
@@ -37,7 +37,7 @@ class FlightTest {
     }
 
     @Test
-    void setActualDeparture_setActualDeparture() {
+    void setActualDeparture_ValidValue_setActualDeparture() {
         var flight = FlightStub.getBaseFlight();
         assertNull(flight.getActualDeparture());
 
