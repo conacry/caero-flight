@@ -43,6 +43,22 @@ public class Flight {
         this.updatedAt = updatedAt;
     }
 
+    public void setActualArrival(Instant time) {
+        if (time == null) {
+            throw FlightError.errActualArrivalIsRequired();
+        }
+
+        this.actualArrival = time;
+    }
+
+    public void setActualDeparture(Instant time) {
+        if (time == null) {
+            throw FlightError.errActualDepartureIsRequired();
+        }
+
+        this.actualDeparture = time;
+    }
+
     public FlightID getId() {
         return id;
     }
