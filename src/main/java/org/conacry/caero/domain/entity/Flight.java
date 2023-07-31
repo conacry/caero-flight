@@ -46,6 +46,14 @@ public class Flight {
         this.actualArrival = time;
     }
 
+    public void setActualDeparture(Instant time) {
+        if (time == null) {
+            throw FlightError.errActualDepartureIsRequired();
+        }
+
+        this.actualDeparture = time;
+    }
+
     public FlightID getId() {
         return id;
     }
