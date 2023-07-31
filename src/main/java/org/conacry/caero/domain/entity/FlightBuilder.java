@@ -5,8 +5,8 @@ import java.time.Instant;
 public class FlightBuilder {
     private FlightID id;
     private FlightNumber number;
-    //private Airport departureAirport;
-    //private Airport arrivalAirport;
+    private Airport departureAirport;
+    private Airport arrivalAirport;
     private Aircraft aircraft;
     private Instant scheduledDeparture;
     private Instant scheduledArrival;
@@ -23,6 +23,16 @@ public class FlightBuilder {
 
     public FlightBuilder number(FlightNumber number) {
         this.number = number;
+        return this;
+    }
+
+    public FlightBuilder departureAirport(Airport departureAirport) {
+        this.departureAirport = departureAirport;
+        return this;
+    }
+
+    public FlightBuilder arrivalAirport(Airport arrivalAirport) {
+        this.arrivalAirport = arrivalAirport;
         return this;
     }
 
@@ -73,6 +83,12 @@ public class FlightBuilder {
         if (this.number == null) {
             throw FlightError.errFlightNumberIsRequired();
         }
+        if (this.departureAirport == null) {
+            throw FlightError.errDepartureAirportIsRequired();
+        }
+        if (this.arrivalAirport == null) {
+            throw FlightError.errArrivalAirportIsRequired();
+        }
         if (this.aircraft == null) {
             throw FlightError.errAircraftIsRequired();
         }
@@ -99,6 +115,8 @@ public class FlightBuilder {
         return new Flight(
                 this.id,
                 this.number,
+                this.departureAirport,
+                this.arrivalAirport,
                 this.aircraft,
                 this.scheduledDeparture,
                 this.scheduledArrival,

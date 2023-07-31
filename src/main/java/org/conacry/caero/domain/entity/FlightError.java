@@ -16,6 +16,8 @@ public final class FlightError {
     public static final String UPDATED_AT_IS_REQUIRED = "3d1f50e6-010";
     public static final String ACTUAL_ARRIVAL_IS_REQUIRED =  "3d1f50e6-011";
     public static final String ACTUAL_DEPARTURE_IS_REQUIRED ="3d1f50e6-012";
+    public static final String DEPARTURE_AIRPORT_IS_REQUIRED = "3d1f50e6-013";
+    public static final String ARRIVAL_AIRPORT_IS_REQUIRED = "3d1f50e6-014";
 
     public static CodedException errFlightNumberIsRequired() {
         var errMsg = "Value to create FlightNumber is required";
@@ -65,6 +67,16 @@ public final class FlightError {
     public static CodedException errUpdatedAtIsRequired() {
         var errMsg = "Value to create updatedAt is required";
         return new CodedException(UPDATED_AT_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errDepartureAirportIsRequired() {
+        var errMsg = "Value to create DepartureAirport is required";
+        return new CodedException(DEPARTURE_AIRPORT_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errArrivalAirportIsRequired() {
+        var errMsg = "Value to create ArrivalAirport is required";
+        return new CodedException(ARRIVAL_AIRPORT_IS_REQUIRED, errMsg);
     }
 
     public static CodedException errActualArrivalIsRequired() {

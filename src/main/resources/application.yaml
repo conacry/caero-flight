@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: caero-flight
+  main:
+    banner-mode: off
+  datasource:
+    dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+    username: local_pg_user
+    password: bUJfKyGtz2CseV
+    maximumPoolSize: 30
+    minimumIdle: 5
+    dataSourceProperties:
+      serverName: localhost
+      portNumber: 5436
+      databaseName: local_flight_db
+    flyway:
+      enabled: true
+      locations: "classpath:db/migration"
+
+server:
+  port: 8091
