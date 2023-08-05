@@ -16,7 +16,7 @@ public class CreateAirportImpl implements CreateAirport {
     @Override
     public void execute(CreateAirportInfo info) {
         if (info == null) {
-            throw new RuntimeException();
+            throw UsecaseError.errAirportInfoIsNull();
         }
 
         var airportID = AirportID.newID();
@@ -26,8 +26,8 @@ public class CreateAirportImpl implements CreateAirport {
         var coordinate = Coordinate.of(info.getCoordinate().getLatitude(), info.getCoordinate().getLongitude());
         var timezone = info.getTimezone();
 
-        var isThere = airportRepository.exist(airportCode);
-        if(isThere) {
+        var isAirportThere = airportRepository.exist(airportCode);
+        if(isAirportThere) {
             throw UsecaseError.errAirportAlreadyExist();
         }
 
