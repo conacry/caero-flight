@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.conacry.caero.adapter.repository.mapper.AirportMapper">
+    <insert id="insert">
+        INSERT INTO flight (id,
+                            number,
+                            departure_airport,
+                            arrival_airport,
+                            aircraft,
+                            scheduled_departure,
+                            scheduled_arrival,
+                            status,
+                            created_at,
+                            updated_at)
+        VALUES (#{model.flightID},
+                #{model.number},
+                #{model.departureAirport},
+                #{model.arrivalAirport}
+                #{model.aircraft},
+                #{model.scheduledDeparture},
+                #{model.scheduledArrival},
+                #{model.status},
+                #{model.createdAt},
+                #{model.updatedAt})
+    </insert>
+
+    <select id="selectByID" resultType="flight">
+        SELECT id,
+               number,
+               departure_airport,
+               arrival_airport,
+               aircraft,
+               scheduled_departure,
+               scheduled_arrival,
+               actual_departure,
+               actual_arrival,
+               status,
+               created_at,
+               updated_at
+        FROM flight
+        WHERE id = #{id}
+    </select>
+</mapper>
