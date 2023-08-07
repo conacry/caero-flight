@@ -2,7 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.conacry.caero.adapter.repository.mapper.AirportMapper">
 
-    <insert id="insertAirport">
+    <resultMap id="airportDbModel" type="org.conacry.caero.adapter.repository.model.AirportDbModel">
+        <id column="id" property="airportID"/>
+        <result column="airport_code" property="airportCode"/>
+        <result column="airport_name" property="airportName"/>
+        <result column="city_name" property="city"/>
+        <result column="latitude_coordinate" property="latitude"/>
+        <result column="longitude_coordinate" property="longitude"/>
+        <result column="timezone" property="timezone"/>
+    </resultMap>
+
+    <insert id="insertAirport" useGeneratedKeys="false">
         INSERT INTO airport (id,
                              airport_code,
                              airport_name,
@@ -19,7 +29,7 @@
                 #{model.timezone})
     </insert>
 
-    <select id="selectByIdAirport" resultType="airport">
+    <select id="selectByID" resultMap="airportDbModel">
         SELECT id,
                airport_code,
                airport_name,
@@ -30,5 +40,4 @@
         FROM airport
         WHERE id = #{id}
     </select>
-
 </mapper>

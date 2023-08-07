@@ -8,6 +8,6 @@ import java.util.UUID;
 
 @Mapper
 public interface AirportMapper {
-    void insert(@Param("model") AirportDbModel model);
+    void insertAirport(@Param("model") AirportDbModel model);
     AirportDbModel selectByID(@Param("id") UUID id);
 }
