@@ -4,6 +4,7 @@ import org.conacry.caero.adapter.repository.converter.AirportConverter;
 import org.conacry.caero.adapter.repository.mapper.AirportMapper;
 import org.conacry.caero.boundary.repository.AirportRepository;
 import org.conacry.caero.domain.entity.Airport;
+import org.conacry.caero.domain.entity.AirportCode;
 import org.conacry.caero.domain.entity.AirportID;
 
 import java.util.Optional;
@@ -38,5 +39,10 @@ public class AirportRepositoryImpl implements AirportRepository {
         return airportDbModel == null ?
                 Optional.empty() :
                 Optional.of(AirportConverter.toEntity(airportDbModel));
+    }
+
+    @Override
+    public boolean exist(AirportCode airportCode) {
+        throw new RuntimeException("Operation isn't supported");
     }
 }
