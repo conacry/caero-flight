@@ -3,16 +3,20 @@ package testdouble.entity;
 import org.conacry.caero.domain.entity.*;
 import util.generator.StringGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.time.Instant;
 
 public class AirportStub {
 
     public static Airport getAirport() {
         var airportID = AirportID.newID();
-        var airportCode = AirportCode.of("ABC");
-        var airportName = AirportName.from("Almaty Airport");
-        var city = City.of("Almaty");
-        var coordinate = Coordinate.of(80.123456, 160.123456);
+        var airportCode = AirportCode.of("ALA");
+        var airportName = AirportName.from(StringGenerator.getRandomString());
+        var city = City.of(StringGenerator.getRandomString());
+        var latitudeValue = 80.789456;
+        var longitudeValue = 160.456465;
+        var coordinate = Coordinate.of(latitudeValue, longitudeValue);
         var timezone = "UTC +6";
 
         return new AirportBuilder().
@@ -23,5 +27,15 @@ public class AirportStub {
                 coordinates(coordinate).
                 timezone(timezone).
                 build();
+    }
+
+    public static List<Airport> getAirports(int count) {
+        var airports = new ArrayList<Airport>();
+
+        for (int i = 0; i < count; i++) {
+            airports.add(getAirport());
+        }
+
+        return airports;
     }
 }
