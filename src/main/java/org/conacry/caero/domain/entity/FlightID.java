@@ -51,8 +51,6 @@ public final class FlightID {
 
     @Override
     public String toString() {
-        return "FlightID{" +
-                "value=" + value +
-                '}';
+        return this.value.toString();
     }
 }
