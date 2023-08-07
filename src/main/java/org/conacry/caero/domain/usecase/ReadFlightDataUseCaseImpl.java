@@ -1,4 +1,4 @@
-package org.conacry.caero.domain.entity.usecase;
+package org.conacry.caero.domain.usecase;
 
 import org.conacry.caero.boundary.repository.FlightRepository;
 import org.conacry.caero.boundary.usecase.ReadFlightDataUseCase;
@@ -20,7 +20,7 @@ public class ReadFlightDataUseCaseImpl implements ReadFlightDataUseCase {
         var flightOpt = flightRepository.findByID(flightID);
 
         return flightOpt.
-                orElseThrow(() -> UseCaseError.errFlightNotFound(flightID));
+                orElseThrow(() -> UsecaseError.errFlightNotFound(flightID));
     }
 
     public List<Flight> findAll() {

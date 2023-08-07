@@ -1,9 +1,9 @@
-package org.conacry.caero.domain.entity.usecase;
+package org.conacry.caero.domain.usecase;
 
 import org.conacry.caero.boundary.repository.FlightRepository;
-import org.conacry.caero.domain.entity.Flight;
 import org.conacry.caero.domain.entity.FlightError;
 import org.conacry.caero.domain.entity.FlightID;
+import org.conacry.caero.domain.usecase.ReadFlightDataUseCaseImpl;
 import org.conacry.caero.shared.exception.CodedException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import testdouble.entity.FlightStub;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,7 +43,7 @@ class ReadFlightDataUseCaseTest {
         when(flightRepository.findByID(any(FlightID.class))).thenReturn(Optional.empty());
 
         var ex = assertThrows(CodedException.class, () -> readFlightDataUseCase.findByID(flightID));
-        assertEquals(UseCaseError.FLIGHT_NOT_FOUND, ex.getCode());
+        assertEquals(UsecaseError.FLIGHT_NOT_FOUND, ex.getCode());
     }
 
     @Test
