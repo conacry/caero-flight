@@ -38,6 +38,7 @@ public class AirportRepositoryImpl implements AirportRepository {
         if (airportID == null) {
             throw RepositoryError.errAirportIDIsRequired();
         }
+
         var airportDbModel = airportMapper.selectByID(airportID.getValue());
 
         return airportDbModel == null ?

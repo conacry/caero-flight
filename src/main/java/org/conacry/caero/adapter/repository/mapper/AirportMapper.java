@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface AirportMapper {
     void insertAirport(@Param("model") AirportDbModel model);
     AirportDbModel selectByID(@Param("id") UUID id);
+    void deleteAll();
 }

@@ -10,7 +10,7 @@ public class AirportStub {
 
     public static Airport getAirport() {
         var airportID = AirportID.newID();
-        var airportCode = AirportCode.of("ALA");
+        var airportCode = AirportCodeStub.getAirportCode();
         var airportName = AirportName.from(StringGenerator.getRandomString());
         var city = City.of(StringGenerator.getRandomString());
         var latitudeValue = 80.789456;

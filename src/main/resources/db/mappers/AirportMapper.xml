@@ -40,4 +40,8 @@
         FROM airport
         WHERE id = #{id}
     </select>
+
+    <delete id="deleteAll">
+        DELETE FROM airport
+    </delete>
 </mapper>
