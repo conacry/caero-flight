@@ -8,9 +8,9 @@ import lombok.Setter;
 public class CreateFlightInfo {
 
     private String flightNumber;
-    private String departureAirportId;
-    private String arrivalAirportId;
-    private String aircraftId;
+    private String departureAirportID;
+    private String arrivalAirportID;
+    private String aircraftID;
     private long scheduledDeparture;
     private long scheduledArrival;
 }

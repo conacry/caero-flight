@@ -51,9 +51,7 @@ public class AirportID {
 
     @Override
     public String toString() {
-        return "AirportID{" +
-                "value=" + value +
-                '}';
+        return this.value.toString();
     }
 
 }
