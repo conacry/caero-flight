@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.conacry.caero.adapter.repository.mapper.AirportMapper">
+<mapper namespace="org.conacry.caero.adapter.repository.mapper.FlightMapper">
+
+    <resultMap id="flightDbModel" type="org.conacry.caero.adapter.repository.model.FlightDbModel">
+        <id column="id" property="flightID"/>
+        <result column="number" property="number"/>
+        <result column="scheduled_departure" property="scheduledDeparture"/>
+        <result column="scheduled_arrival" property="scheduledArrival"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+
+        <association property="departureAirport" javaType="org.conacry.caero.adapter.repository.model.AirportDbModel">
+            <id column="id" property="airportID"/>
+            <result column="airport_code" property="airportCode"/>
+            <result column="airport_name" property="airportName"/>
+            <result column="city_name" property="city"/>
+            <result column="latitude_coordinate" property="latitude"/>
+            <result column="longitude_coordinate" property="longitude"/>
+            <result column="timezone" property="timezone"/>
+        </association>
+
+        <association property="arrivalAirport" javaType="org.conacry.caero.adapter.repository.model.AirportDbModel">
+            <id column="id" property="airportID"/>
+            <result column="airport_code" property="airportCode"/>
+            <result column="airport_name" property="airportName"/>
+            <result column="city_name" property="city"/>
+            <result column="latitude_coordinate" property="latitude"/>
+            <result column="longitude_coordinate" property="longitude"/>
+            <result column="timezone" property="timezone"/>
+        </association>
+
+        <association property="aircraft" javaType="org.conacry.caero.adapter.repository.model.AircraftDbModel">
+            <id column="aircraft_id" property="aircraftID"/>
+            <result column="aircraft_model" property="model"/>
+        </association>
+
+    </resultMap>
+
     <insert id="insert">
-        INSERT INTO flight (id,
+        INSERT INTO flights (id,
                             number,
-                            departure_airport,
-                            arrival_airport,
-                            aircraft,
+                            departure_airport_id,
+                            arrival_airport_id,
+                            aircraft_id,
                             scheduled_departure,
                             scheduled_arrival,
                             status,
@@ -14,9 +51,9 @@
                             updated_at)
         VALUES (#{model.flightID},
                 #{model.number},
-                #{model.departureAirport},
-                #{model.arrivalAirport}
-                #{model.aircraft},
+                #{model.departureAirport.id},
+                #{model.arrivalAirport.id}
+                #{model.aircraft.id},
                 #{model.scheduledDeparture},
                 #{model.scheduledArrival},
                 #{model.status},
@@ -24,20 +61,30 @@
                 #{model.updatedAt})
     </insert>
 
-    <select id="selectByID" resultType="flight">
-        SELECT id,
-               number,
-               departure_airport,
-               arrival_airport,
-               aircraft,
-               scheduled_departure,
-               scheduled_arrival,
-               actual_departure,
-               actual_arrival,
-               status,
-               created_at,
-               updated_at
-        FROM flight
+    <select id="selectByID" resultMap="flightDbModel">
+        SELECT f.id AS id,
+               f.number AS number,
+               f.departure_airport,
+               f.arrival_airport,
+               f.aircraft,
+               f.scheduled_departure,
+               f.scheduled_arrival,
+               f.actual_departure,
+               f.actual_arrival,
+               f.status,
+               f.created_at,
+               f.updated_at,
+
+               a_craft.id AS aircraft_id,
+               a_craft.model AS aircraft_model
+
+            
+        FROM flights f
+            INNER JOIN aircraft a_craft
+                ON f.aircraft_id = a_craft.id
+
+            INNER JOIN airport dep_a
+                ON f.airportID = dep_a.id
         WHERE id = #{id}
     </select>
 </mapper>

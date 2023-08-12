@@ -7,10 +7,10 @@ import org.conacry.caero.domain.entity.Flight;
 import org.conacry.caero.domain.entity.FlightID;
 
 import java.util.List;
-import java.util.UUID;
 
 @Mapper
 public interface FlightMapper {
+    void insert(@Param("model")FlightDbModel model);
     FlightDbModel findByID(@Param("ID")FlightID flightID);
 
     List<Flight> findAll();

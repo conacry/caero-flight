@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class AircraftDbModel {
     private int aircraftID;
-    private String Model;
+    private String model;
 }

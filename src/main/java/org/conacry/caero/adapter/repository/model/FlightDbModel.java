@@ -2,9 +2,7 @@ package org.conacry.caero.adapter.repository.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.conacry.caero.domain.entity.*;
 
-import java.time.Instant;
 import java.util.UUID;
 
 @Getter
