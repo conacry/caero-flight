@@ -5,13 +5,12 @@ import util.generator.StringGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.time.Instant;
 
 public class AirportStub {
 
     public static Airport getAirport() {
         var airportID = AirportID.newID();
-        var airportCode = AirportCode.of("ALA");
+        var airportCode = AirportCodeStub.getAirportCode();
         var airportName = AirportName.from(StringGenerator.getRandomString());
         var city = City.of(StringGenerator.getRandomString());
         var latitudeValue = 80.789456;

@@ -49,7 +49,7 @@ class AirportRepositoryImplTest {
         var airport = AirportStub.getAirport();
 
         airportRepository.save(airport);
-        verify(airportMapper).insert(airportDbModelCaptor.capture());
+        verify(airportMapper).insertAirport(airportDbModelCaptor.capture());
 
         var airportDbModel = airportDbModelCaptor.getValue();
         assertNotNull(airportDbModel);
