@@ -78,13 +78,30 @@
                a_craft.id AS aircraft_id,
                a_craft.model AS aircraft_model
 
-            
+               dep_a.id AS airport_ID
+               dep_a.airportCode AS airport_code
+               dep_a.airportName AS airport_name
+               dep_a.city AS city_name
+               dep_a.latitude AS latitude_coordinate
+               dep_a.longitude AS longitude_coordinate
+               dep_a.timezone AS timezone
+
+               arr_a.id AS airport_ID
+               arr_a.airportCode AS airport_code
+               arr_a.airportName AS airport_name
+               arr_a.city AS city_name
+               arr_a.latitude AS latitude_coordinate
+               arr_a.longitude AS longitude_coordinate
+               arr_a.timezone AS timezone
         FROM flights f
             INNER JOIN aircraft a_craft
                 ON f.aircraft_id = a_craft.id
 
             INNER JOIN airport dep_a
                 ON f.airportID = dep_a.id
+
+           INNER JOIN airport arr_a
+                ON f.airportID = arr_a
         WHERE id = #{id}
     </select>
 </mapper>
