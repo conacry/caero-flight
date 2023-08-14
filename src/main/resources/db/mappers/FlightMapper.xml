@@ -12,7 +12,7 @@
         <result column="updated_at" property="updatedAt"/>
 
         <association property="departureAirport" javaType="org.conacry.caero.adapter.repository.model.AirportDbModel">
-            <id column="id" property="airportID"/>
+            <id column="depAirportID" property="airportID"/>
             <result column="airport_code" property="airportCode"/>
             <result column="airport_name" property="airportName"/>
             <result column="city_name" property="city"/>
@@ -22,7 +22,7 @@
         </association>
 
         <association property="arrivalAirport" javaType="org.conacry.caero.adapter.repository.model.AirportDbModel">
-            <id column="id" property="airportID"/>
+            <id column="arrAirportID" property="airportID"/>
             <result column="airport_code" property="airportCode"/>
             <result column="airport_name" property="airportName"/>
             <result column="city_name" property="city"/>
@@ -39,7 +39,7 @@
     </resultMap>
 
     <insert id="insert">
-        INSERT INTO flights (id,
+        INSERT INTO flight (id,
                             number,
                             departure_airport_id,
                             arrival_airport_id,
@@ -62,46 +62,93 @@
     </insert>
 
     <select id="selectByID" resultMap="flightDbModel">
-        SELECT f.id AS id,
-               f.number AS number,
-               f.departure_airport,
-               f.arrival_airport,
-               f.aircraft,
-               f.scheduled_departure,
-               f.scheduled_arrival,
-               f.actual_departure,
-               f.actual_arrival,
-               f.status,
-               f.created_at,
-               f.updated_at,
+        SELECT f.id                       AS id,
+               f.number                   AS number,
+               f.departure_airport_id     AS departureAirport,
+               f.arrival_airport_id       AS arrivalAirport,
+               f.aircraft_id              AS aircraft,
+               f.scheduled_departure      AS scheduledDeparture,
+               f.scheduled_arrival        AS scheduledArrival,
+               f.actual_departure         AS actualDeparture,
+               f.actual_arrival           AS actualArrival,
+               f.status                   AS status,
+               f.created_at               AS createdAt,
+               f.updated_at               AS updatedAt,
 
-               a_craft.id AS aircraft_id,
-               a_craft.model AS aircraft_model
+               a_craft.id                 AS aircraftID,
+               a_craft.model              AS model,
 
-               dep_a.id AS airport_ID
-               dep_a.airportCode AS airport_code
-               dep_a.airportName AS airport_name
-               dep_a.city AS city_name
-               dep_a.latitude AS latitude_coordinate
-               dep_a.longitude AS longitude_coordinate
-               dep_a.timezone AS timezone
+               dep_a.id                   AS depAirportID,
+               dep_a.airport_code         AS airportcode,
+               dep_a.airport_name         AS airportName,
+               dep_a.city_name            AS city,
+               dep_a.latitude_coordinate  AS latitude,
+               dep_a.longitude_coordinate AS longitude,
+               dep_a.timezone             AS timezone,
 
-               arr_a.id AS airport_ID
-               arr_a.airportCode AS airport_code
-               arr_a.airportName AS airport_name
-               arr_a.city AS city_name
-               arr_a.latitude AS latitude_coordinate
-               arr_a.longitude AS longitude_coordinate
-               arr_a.timezone AS timezone
-        FROM flights f
-            INNER JOIN aircraft a_craft
-                ON f.aircraft_id = a_craft.id
+               arr_a.id                   AS arrAirportID,
+               arr_a.airport_code         AS airportCode,
+               arr_a.airport_name         AS airportName,
+               arr_a.city_name            AS cityName,
+               arr_a.latitude_coordinate  AS latitude,
+               arr_a.longitude_coordinate AS longitude,
+               arr_a.timezone             AS timezone
+        FROM flight f
+                 INNER JOIN aircraft a_craft
+                            ON f.aircraft_id = a_craft.id
 
-            INNER JOIN airport dep_a
-                ON f.airportID = dep_a.id
+                 INNER JOIN airport dep_a
+                            ON f.departure_airport_id = dep_a.id
 
-           INNER JOIN airport arr_a
-                ON f.airportID = arr_a
-        WHERE id = #{id}
+                 INNER JOIN airport arr_a
+                            ON f.arrival_airport_id = arr_a
+        WHERE f.id = #{id}
     </select>
+
+    <select id="selectAll" resultMap="flightDbModel">
+        SELECT f.id                       AS id,
+               f.number                   AS number,
+               f.departure_airport_id     AS departureAirport,
+               f.arrival_airport_id       AS arrivalAirport,
+               f.aircraft_id              AS aircraft,
+               f.scheduled_departure      AS scheduledDeparture,
+               f.scheduled_arrival        AS scheduledArrival,
+               f.actual_departure         AS actualDeparture,
+               f.actual_arrival           AS actualArrival,
+               f.status                   AS status,
+               f.created_at               AS createdAt,
+               f.updated_at               AS updatedAt,
+
+               a_craft.id                 AS aircraftID,
+               a_craft.model              AS model,
+
+               dep_a.id                   AS airportID,
+               dep_a.airport_code         AS airportcode,
+               dep_a.airport_name         AS airportName,
+               dep_a.city_name            AS city,
+               dep_a.latitude_coordinate  AS latitude,
+               dep_a.longitude_coordinate AS longitude,
+               dep_a.timezone             AS timezone,
+
+               arr_a.id                   AS airportID,
+               arr_a.airport_code         AS airportCode,
+               arr_a.airport_name         AS airportName,
+               arr_a.city_name            AS cityName,
+               arr_a.latitude_coordinate  AS latitude,
+               arr_a.longitude_coordinate AS longitude,
+               arr_a.timezone             AS timezone
+        FROM flight f
+                 INNER JOIN aircraft a_craft
+                            ON f.aircraft_id = a_craft.id
+
+                 INNER JOIN airport dep_a
+                            ON f.departure_airport_id = dep_a.id
+
+                 INNER JOIN airport arr_a
+                            ON f.arrival_airport_id = arr_a
+    </select>
+
+    <delete id="deleteAll">
+        DELETE FROM flight
+    </delete>
 </mapper>

@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface FlightMapper {
     void insert(@Param("model")FlightDbModel model);
-    FlightDbModel findByID(@Param("ID")FlightID flightID);
-
-    List<Flight> findAll();
+    FlightDbModel selectByID(@Param("ID")FlightID flightID);
+    List<Flight> selectAll();
+    void deleteAll ();
 }

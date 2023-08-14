@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AircraftDbModel {
-    private int aircraftID;
+    private String aircraftID;
     private String model;
 }
