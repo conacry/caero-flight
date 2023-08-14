@@ -4,7 +4,9 @@ import org.conacry.caero.boundary.model.CreateAirportInfo;
 import org.conacry.caero.boundary.repository.AirportRepository;
 import org.conacry.caero.boundary.usecase.CreateAirport;
 import org.conacry.caero.domain.entity.*;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateAirportImpl implements CreateAirport {
 
     private final AirportRepository airportRepository;

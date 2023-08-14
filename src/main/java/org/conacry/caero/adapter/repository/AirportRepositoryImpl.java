@@ -6,10 +6,11 @@ import org.conacry.caero.boundary.repository.AirportRepository;
 import org.conacry.caero.domain.entity.Airport;
 import org.conacry.caero.domain.entity.AirportCode;
 import org.conacry.caero.domain.entity.AirportID;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-
+@Repository
 public class AirportRepositoryImpl implements AirportRepository {
 
     private final AirportMapper airportMapper;

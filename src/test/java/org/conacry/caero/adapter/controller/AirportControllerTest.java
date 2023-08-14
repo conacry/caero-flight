@@ -1,6 +1,5 @@
 package org.conacry.caero.adapter.controller;
 
-import org.conacry.caero.adapter.controller.converter.RequestConverter;
 import org.conacry.caero.adapter.controller.request.CreateAirportRequest;
 import org.conacry.caero.boundary.model.CreateAirportInfo;
 import org.conacry.caero.boundary.usecase.CreateAirport;
@@ -10,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -50,5 +50,24 @@ class AirportControllerTest {
         createAirportRequest.setCoordinate(coordinateRequest);
 
         assertThrows(RuntimeException.class, () -> airportController.createAirport(createAirportRequest));
+    }
+
+    @Test
+    void createAirport_NoExIsOccurred_ReturnCreated() {
+        var createAirportRequest = new CreateAirportRequest();
+        createAirportRequest.setAirportCode("123");
+        createAirportRequest.setAirportName("Dubai");
+        createAirportRequest.setCity("Dubai");
+        createAirportRequest.setTimezone("UTC +6");
+
+        var coordinateRequest = new CreateAirportRequest.CoordinateInfo();
+        coordinateRequest.setLatitude(80.789456);
+        coordinateRequest.setLongitude(160.456465);
+        createAirportRequest.setCoordinate(coordinateRequest);
+
+        var response = airportController.createAirport(createAirportRequest);
+        assertNotNull(response);
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertNull(response.getBody());
     }
 }
