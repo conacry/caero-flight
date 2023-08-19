@@ -14,7 +14,7 @@ import java.util.Optional;
 
 
 @Repository
-public class AirportRepositoryImpl implements AirportRepository {
+public class  AirportRepositoryImpl implements AirportRepository {
 
     private final AirportMapper airportMapper;
 

@@ -6,7 +6,8 @@ import org.conacry.caero.domain.entity.*;
 
 import java.util.List;
 
-public final class AirportConverter {
+public final class
+AirportConverter {
 
     public static AirportDbModel toModel(Airport airport) {
         if (airport == null) {
